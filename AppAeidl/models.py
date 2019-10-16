@@ -46,7 +46,7 @@ class Patient(models.Model):
 
 
 class Study(models.Model):
-    name = models.CharField(max_length=30, null=False, unique=True)
+    name = models.CharField(max_length=80, null=False, unique=True)
 
     def __str__(self):
         return f'{self.name}'

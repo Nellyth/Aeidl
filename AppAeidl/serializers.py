@@ -1,6 +1,7 @@
 from rest_framework import serializers
-
-from AppAeidl.models import Patient, Medic, Analisi, Study
+from django.contrib.auth.models import User
+from AppAeidl.models import Patient, Medic, Analisi, Study, Entity, Appointment
+import django.contrib.auth.password_validation as validators
 
 
 class PatientSerializers(serializers.ModelSerializer):
@@ -57,3 +58,31 @@ class AnalisiSerializers(serializers.ModelSerializer):
                 'fecha',
                 'file'
             )
+
+
+class EntitySerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Entity
+        fields = '__all__'
+
+
+class AppointmentSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Appointment
+        fields = '__all__'
+
+
+class UserSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+    def validate_password(self, data):
+        validators.validate_password(password=data, user=User)
+        return data
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        user.is_active = False
+        user.save()
+        return user

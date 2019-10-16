@@ -1,0 +1,4 @@
+Django==2.2.5
+django-model-choices==1.0.0
+djangorestframework==3.10.3
+djangorestframework-simplejwt==4.3.0
