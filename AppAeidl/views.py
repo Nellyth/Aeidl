@@ -41,7 +41,7 @@ class MedicView(viewsets.ModelViewSet):
 class AnalisisView(viewsets.ModelViewSet):
     queryset = Analisi.objects.all()
     serializer_class = AnalisiSerializers
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
