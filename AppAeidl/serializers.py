@@ -59,6 +59,20 @@ class AnalisiSerializers(serializers.ModelSerializer):
                 'file'
             )
 
+    def create(self, validated_data):
+        data = Analisi.objects.create(patient_id=self.initial_data.get("patient"),
+                                      medic_id=self.initial_data.get("medic").id,
+                                      study_id=self.initial_data.get("study"),
+                                      file=validated_data.get("file"))
+        return data
+
+    def update(self, instance, validated_data):
+        data = Analisi.objects.filter(id=self.data["id"]).update(patient=self.initial_data.get("patient"),
+                                      medic=self.data.get("medic")["id"],
+                                      study=self.initial_data.get("study"),
+                                      file=validated_data.get("file"))
+        return data
+
 
 class EntitySerializers(serializers.ModelSerializer):
     class Meta:
