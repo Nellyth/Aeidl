@@ -61,7 +61,7 @@ class AnalisiSerializers(serializers.ModelSerializer):
 
     def create(self, validated_data):
         data = Analisi.objects.create(patient_id=self.initial_data.get("patient"),
-                                      medic_id=self.initial_data.get("medic").id,
+                                      medic=self.initial_data.get("medic"),
                                       study_id=self.initial_data.get("study"),
                                       file=validated_data.get("file"))
         return data

@@ -45,7 +45,7 @@ class AnalisisView(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
-        data["medic"] = self.request.user
+        data["medic"] = Medic.objects.get(user=self.request.user)
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
