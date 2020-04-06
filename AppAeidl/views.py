@@ -79,3 +79,14 @@
 #         return response
 #     except Exception as e:
 #         raise Http404(e)
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+
+
+class Home(LoginRequiredMixin, TemplateView):
+    template_name = 'Aeidl/home.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        context["user"] = self.request.user
+        return self.render_to_response(context)
