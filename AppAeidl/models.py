@@ -22,6 +22,9 @@ class Medic(models.Model):
     def __str__(self):
         return f'{self.identificacion}, {self.name}'
 
+    class Meta:
+        ordering = ['name']
+
 
 class Entity(models.Model):
     name = models.CharField(max_length=20, null=False, unique=True)
@@ -44,6 +47,9 @@ class Patient(models.Model):
     def __str__(self):
         return f'{self.identificacion}, {self.name}'
 
+    class Meta:
+        ordering = ['name']
+
 
 class Study(models.Model):
     name = models.CharField(max_length=80, null=False, unique=True)
@@ -64,6 +70,9 @@ class Analisi(models.Model):
     def __str__(self):
         return f'Paciente: {self.patient.name}, Medico: {self.medic.name}, ' \
                f'Estudio: {self.study.name}, Fecha: {self.fecha}'
+
+    class Meta:
+        ordering = ['-pk']
 
 
 

@@ -52,6 +52,17 @@ class AnalisisView(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+    def get_queryset(self):
+        queryset = Analisi.objects.all()
+        if 'medic' in self.request.GET:
+            return queryset.filter(medic__name__icontains=self.request.GET['medic'])
+        elif 'patient' in self.request.GET:
+            return queryset.filter(patient__name__icontains=self.request.GET['patient'])
+        elif 'date' in self.request.GET:
+            return queryset.filter(fecha=self.request.GET['date'])
+        else:
+            return queryset
+
 
 class EntityView(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Entity.objects.all()
