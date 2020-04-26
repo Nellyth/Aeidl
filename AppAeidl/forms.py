@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django import forms
 
 from AppAeidl.choices import GenderChoices
-from AppAeidl.models import Medic, Patient, Person, Company, Entity
+from AppAeidl.models import Medic, Patient, Person, Company, Entity, Specialty, Role
 from datetime import date
 
 
@@ -134,4 +134,44 @@ class EntityForm(ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+
+class SpecialtyForm(ModelForm):
+    class Meta:
+        model = Specialty
+
+        fields = [
+            'name',
+            'company'
+        ]
+
+        labels = {
+            'name': 'Name',
+            'company': 'Company'
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'company': forms.Select(attrs={'class': 'form-control'})
+        }
+
+
+class RoleForm(ModelForm):
+    class Meta:
+        model = Role
+
+        fields = [
+            'name',
+            'company'
+        ]
+
+        labels = {
+            'name': 'Name',
+            'company': 'Company'
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'company': forms.Select(attrs={'class': 'form-control'})
         }

@@ -4,7 +4,9 @@ from django.urls import path
 from Aeidl import settings
 from AppAeidl.views import Home, MedicListView, MedicCreateView, MedicUpdateView, MedicDeleteView, PacienteListView, \
     PacienteCreateView, PacienteUpdateView, PacienteDeleteView, ProfileUpdateUser, CompanyDeleteView, CompanyUpdateView, \
-    CompanyCreateView, CompanyListView, EntityListView, EntityCreateView, EntityUpdateView, EntityDeleteView
+    CompanyCreateView, CompanyListView, EntityListView, EntityCreateView, EntityUpdateView, EntityDeleteView, \
+    SpecialtyListView, SpecialtyCreateView, SpecialtyUpdateView, SpecialtyDeleteView, RoleListView, RoleCreateView, \
+    RoleUpdateView, RoleDeleteView
 
 urlpatterns = [
     path('', Home.as_view(), name="home"),
@@ -24,6 +26,14 @@ urlpatterns = [
     path('entity_create/', EntityCreateView.as_view(), name="entity_create"),
     path('entity_update/<int:pk>/', EntityUpdateView.as_view(), name="entity_update"),
     path('entity_erase/<int:pk>/', EntityDeleteView.as_view(), name="entity_erase"),
+    path('specialty/',  SpecialtyListView.as_view(), name="specialty_list"),
+    path('specialty_create/',  SpecialtyCreateView.as_view(), name="specialty_create"),
+    path('specialty_update/<int:pk>/',  SpecialtyUpdateView.as_view(), name="specialty_update"),
+    path('specialty_erase/<int:pk>/',  SpecialtyDeleteView.as_view(), name="specialty_erase"),
+    path('role/',  RoleListView.as_view(), name="role_list"),
+    path('role_create/',  RoleCreateView.as_view(), name="role_create"),
+    path('role_update/<int:pk>/',  RoleUpdateView.as_view(), name="role_update"),
+    path('role_erase/<int:pk>/',  RoleDeleteView.as_view(), name="role_erase"),
     path('profile/<int:pk>/', ProfileUpdateUser.as_view(), name="profile"),
     path('login/', LoginView.as_view(template_name='Aeidl/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='Aeidl/login.html'), name='logout')
