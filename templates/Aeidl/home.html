@@ -1,6 +1,16 @@
 {% extends 'base/base.html' %}
 {% block content %}{% endblock %}
 {% block menu_options %}
+    <!-- Nav Item - Company -->
+    {% if perms.AppAeidl.view_company %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'company_list' %}">
+                <i class="fas fa-fw fa-user-md"></i>
+                <span>Company</span>
+            </a>
+        </li>
+    {% endif %}
+
     <!-- Nav Item - Personal Medico -->
     {% if perms.AppAeidl.view_medic %}
         <li class="nav-item">
@@ -17,6 +27,15 @@
             <a class="nav-link" href="{% url 'paciente_list' %}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Patient</span></a>
+        </li>
+    {% endif %}
+
+    {% if perms.AppAeidl.view_entity %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'entity_list' %}">
+                <i class="fas fa-fw fa-user-md"></i>
+                <span>Entity</span>
+            </a>
         </li>
     {% endif %}
     {#                <!-- Nav Item - Pages Collapse Menu -->#}

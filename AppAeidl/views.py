@@ -2,8 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 
-from AppAeidl.forms import MedicForm, PacienteForm, PersonForm
-from AppAeidl.models import Medic, Patient, Person
+from AppAeidl.forms import MedicForm, PacienteForm, PersonForm, CompanyForm, EntityForm
+from AppAeidl.models import Medic, Patient, Person, Company, Entity
 
 
 class Home(LoginRequiredMixin, TemplateView):
@@ -80,3 +80,63 @@ class ProfileUpdateUser(LoginRequiredMixin, UpdateView):
     form_class = PersonForm
     template_name = 'Aeidl/profile.html'
     success_url = reverse_lazy('home')
+
+
+class CompanyListView(PermissionRequiredMixin, ListView):
+    model = Company
+    queryset = Company.objects.all()
+    template_name = 'Aeidl/company.html'
+    permission_required = 'AppAeidl.view_company'
+
+
+class CompanyCreateView(PermissionRequiredMixin, CreateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = 'Aeidl/company_create.html'
+    success_url = reverse_lazy('company_list')
+    permission_required = 'AppAeidl.add_company'
+
+
+class CompanyUpdateView(PermissionRequiredMixin, UpdateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = 'Aeidl/company_create.html'
+    success_url = reverse_lazy('company_list')
+    permission_required = 'AppAeidl.change_company'
+
+
+class CompanyDeleteView(PermissionRequiredMixin, DeleteView):
+    model = Company
+    template_name = 'Aeidl/delete.html'
+    success_url = reverse_lazy('company_list')
+    permission_required = 'AppAeidl.delete_company'
+
+
+class EntityListView(PermissionRequiredMixin, ListView):
+    model = Entity
+    queryset = Entity.objects.all()
+    template_name = 'Aeidl/entity.html'
+    permission_required = 'AppAeidl.view_entity'
+
+
+class EntityCreateView(PermissionRequiredMixin, CreateView):
+    model = Entity
+    form_class = EntityForm
+    template_name = 'Aeidl/entity_create.html'
+    success_url = reverse_lazy('entity_list')
+    permission_required = 'AppAeidl.add_entity'
+
+
+class EntityUpdateView(PermissionRequiredMixin, UpdateView):
+    model = Entity
+    form_class = EntityForm
+    template_name = 'Aeidl/entity_create.html'
+    success_url = reverse_lazy('entity_list')
+    permission_required = 'AppAeidl.change_entity'
+
+
+class EntityDeleteView(PermissionRequiredMixin, DeleteView):
+    model = Entity
+    template_name = 'Aeidl/delete.html'
+    success_url = reverse_lazy('entity_list')
+    permission_required = 'AppAeidl.delete_entity'

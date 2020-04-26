@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django import forms
 
 from AppAeidl.choices import GenderChoices
-from AppAeidl.models import Medic, Patient, Person
+from AppAeidl.models import Medic, Patient, Person, Company, Entity
 from datetime import date
 
 
@@ -93,3 +93,45 @@ class PacienteForm(ModelForm):
         if date_birth > date.today():
             raise forms.ValidationError("The birth date of birth cannot be greater than the current date")
         return date_birth
+
+
+class CompanyForm(ModelForm):
+    class Meta:
+        model = Company
+        fields = [
+            'nit',
+            'name',
+            'email',
+            'phone'
+        ]
+
+        labels = {
+            'nit': 'Nit',
+            'name': 'Name',
+            'email': 'Email',
+            'phone': 'Phone'
+        }
+
+        widgets = {
+            'nit': forms.NumberInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'phone': forms.NumberInput(attrs={'class': 'form-control'})
+        }
+
+
+class EntityForm(ModelForm):
+    class Meta:
+        model = Entity
+
+        fields = [
+            'name'
+        ]
+
+        labels = {
+            'name': 'Name'
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'})
+        }

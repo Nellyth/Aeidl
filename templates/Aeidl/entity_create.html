@@ -1,0 +1,38 @@
+{% extends 'Aeidl/home.html' %}
+{% load static %}
+{% block content %}
+    <div class="container" style="background-image: url({% static 'image/asd.jpg' %}); width: 100%; height: 100%;">
+        <div class="container" style="width: 80%; border:1px solid black; margin-top: 2%; margin-bottom: 2%;
+            background: white; padding-top: 2%;">
+            <form role="form" method="POST">
+                {% csrf_token %}
+                <h2 class="text-center">
+                    {% if form.changed_data %}
+                        Update
+                    {% else %}
+                        Register
+                    {% endif %}
+                    Entity
+                </h2>
+                {{ form.errors }}
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-2">
+                        <div class="form-group">
+                            <label class="upper"
+                                   for="{{ form.name.name }}">{{ form.name.label }}</label>
+                            {{ form.name }}
+                        </div>
+                    </div>
+                    <hr style="width:98%; border-color: black">
+                    <div class="col-md-12 col-md-offset-2">
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary text-uppercase"
+                                    type="submit"><i class="fa fa-save mr-2"></i>Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
