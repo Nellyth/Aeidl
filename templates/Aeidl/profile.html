@@ -1,0 +1,104 @@
+{% extends 'Aeidl/home.html' %}
+{% load static %}
+{% load query_extras %}
+{% block content %}
+    {% if user.pk == form.instance.pk%}
+        <div class="container" style="background-image: url({% static 'image/asd.jpg' %}); width: 100%; height: 100%;">
+            <div class="container" style="width: 80%; border:1px solid black; margin-top: 2%; margin-bottom: 2%;
+                background: white; padding-top: 2%;">
+                <h2 class="text-center">Profile</h2>
+                <form role="form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.errors }}
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="upper"
+                                       for="{{ form.identification.name }}">{{ form.identification.label }}</label>
+                                {{ form.identification }}
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="upper"
+                                       for="{{ form.first_name.name }}">{{ form.first_name.label }}</label>
+                                {{ form.first_name }}
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="upper"
+                                       for="{{ form.last_name.name }}">{{ form.last_name.label }}</label>
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="upper"
+                                       for="{{ form.email.name }}">{{ form.email.label }}</label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="upper"
+                                       for="{{ form.gender.name }}">{{ form.gender.label }}</label>
+                                {{ form.gender }}
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="upper"
+                                       for="{{ form.email.name }}">{{ form.email.label }}</label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="upper"
+                                       for="{{ form.phone.name }}">{{ form.phone.label }}</label>
+                                {{ form.phone }}
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="upper"
+                                       for="{{ form.photo.name }}">{{ form.photo.label }}</label>
+                                {{ form.photo }}
+                            </div>
+                        </div>
+                        <hr style="width:98%; border-color: black">
+                        <div class="col-md-12 col-md-offset-2">
+                            <div class="float-left">
+                                {% with pk=user.pk|medic_query %}
+                                    {% if pk %}
+                                        <a class="btn btn-warning" href="{% url 'medic_update' pk %}">
+                                            Update Staff Medic</a>
+                                    {% else %}
+                                        <a class="btn btn-warning disabled" href="#">Update Staff Medic</a>
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                            <div class="float-right">
+                                {% with pk=user.pk|patient_query %}
+                                    {% if pk %}
+                                        <a class="btn btn-warning" href="{% url 'paciente_update' pk %}">
+                                            Update Patient</a>
+                                    {% else %}
+                                        <a class="btn btn-warning disabled" href="#">Update Patient</a>
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary text-uppercase"
+                                        type="submit"><i class="fa fa-save mr-2"></i>Save
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

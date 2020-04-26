@@ -1,9 +1,9 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block side_bar %} {% endblock %}
-{% block top_bar %} {% endblock %}
-{% block page_content %} {% endblock %}
+{% block Topbar %} {% endblock %}
 {% block footer %} {% endblock %}
+{% block content %} {% endblock %}
 {% block login %}
     <div class="container">
 
@@ -16,7 +16,8 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block" style="background-image: url('../../static/base/img/AEIDL LOGO.png'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
+                            <div class="col-lg-6 d-none d-lg-block"
+                                 style="background-image: url('../../static/base/img/AEIDL LOGO.png'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -24,26 +25,9 @@
                                     </div>
                                     <form class="user" method="POST">
                                         <small class="text-danger">
-{#                                            {% if form.errors %}#}
-{#                                                {% for field in form %}#}
-{#                                                    {% if field.errors %}#}
-{#                                                        {% for error in field.errors %}#}
-{#                                                            {{ error|escape }}#}
-{#                                                        {% endfor %}#}
-{#                                                    {% endif %}#}
-{#                                                {% endfor %}#}
-{#                                            {% endif %}#}
-{##}
-{#                                            {% if form.non_field.errors %}#}
-{#                                                {% for error in form.non_field.errors %}#}
-{#                                                    {{ error|escape }}#}
-{#                                                {% endfor %}#}
-{#                                            {% endif %}#}
                                             {{ form.errors }}
                                         </small>
                                         {% csrf_token %}
-
-
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                    id="id_username" name="username"
@@ -60,37 +44,29 @@
                                                     Me</label>
                                             </div>
                                         </div>
-
-                                        {#                                        {{ form.errors }}#}
-                                        {#                                        {{ form.as_p }}#}
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
                                         <hr>
-                                        <a href="#" class="btn btn-google btn-user btn-block">
+                                        <button disabled href="#" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="#" class="btn btn-facebook btn-user btn-block">
+                                        </button>
+                                        <button disabled href="#" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+                                        </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="#">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="#">Create an Account!</a>
+                                        <a class="small" href="#" style="pointer-events: none; cursor: default;">Forgot
+                                            Password?</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 {% endblock %}
 {% block js_page %}

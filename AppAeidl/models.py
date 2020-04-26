@@ -5,7 +5,6 @@ from AppAeidl.choices import GenderChoices, StatusChoices
 from AppAeidl.utils.Validations import positive_integer_field
 
 
-# Create your models here.
 class Company(models.Model):
     nit = models.CharField(unique=True, validators=[positive_integer_field], max_length=10)
     name = models.CharField(unique=True, max_length=150)
@@ -20,15 +19,13 @@ class Person(AbstractUser):
     identification = models.CharField(unique=True, max_length=10, validators=[positive_integer_field])
     gender = models.TextField(choices=GenderChoices.CHOICES, max_length=20)
     phone = models.CharField(unique=True, max_length=12, validators=[positive_integer_field])
+    photo = models.ImageField(upload_to='avatars', null=True, blank=True)
 
     def __str__(self):
         return f'{self.identification} - {self.get_username()}'
 
     class Meta(AbstractUser.Meta):
         swappable = 'AppAeidl.Person'
-
-    class Meta:
-        ordering = ['name']
 
 
 class Entity(models.Model):
@@ -46,9 +43,6 @@ class Patient(models.Model):
 
     def __str__(self):
         return f'{self.person.identification}, {self.person.get_username()}'
-
-    class Meta:
-        ordering = ['name']
 
 
 class Specialty(models.Model):
@@ -71,8 +65,6 @@ class Role(models.Model):
 
     class Meta:
         unique_together = (('name', 'company'),)
-
-    class Meta:
         ordering = ['-pk']
 
 
