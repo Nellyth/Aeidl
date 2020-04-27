@@ -6,7 +6,8 @@ from AppAeidl.views import Home, MedicListView, MedicCreateView, MedicUpdateView
     PacienteCreateView, PacienteUpdateView, PacienteDeleteView, ProfileUpdateUser, CompanyDeleteView, CompanyUpdateView, \
     CompanyCreateView, CompanyListView, EntityListView, EntityCreateView, EntityUpdateView, EntityDeleteView, \
     SpecialtyListView, SpecialtyCreateView, SpecialtyUpdateView, SpecialtyDeleteView, RoleListView, RoleCreateView, \
-    RoleUpdateView, RoleDeleteView
+    RoleUpdateView, RoleDeleteView, StudyDeleteView, StudyUpdateView, StudyCreateView, StudyListView, ExamListView, \
+    ExamCreateView, ExamUpdateView, ExamDeleteView
 
 urlpatterns = [
     path('', Home.as_view(), name="home"),
@@ -34,6 +35,14 @@ urlpatterns = [
     path('role_create/',  RoleCreateView.as_view(), name="role_create"),
     path('role_update/<int:pk>/',  RoleUpdateView.as_view(), name="role_update"),
     path('role_erase/<int:pk>/',  RoleDeleteView.as_view(), name="role_erase"),
+    path('study/',  StudyListView.as_view(), name="study_list"),
+    path('study_create/',  StudyCreateView.as_view(), name="study_create"),
+    path('study_update/<int:pk>/',  StudyUpdateView.as_view(), name="study_update"),
+    path('study_erase/<int:pk>/',  StudyDeleteView.as_view(), name="study_erase"),
+    path('exam/', ExamListView.as_view(), name="exam_list"),
+    path('exam_create/', ExamCreateView.as_view(), name="exam_create"),
+    path('exam_update/<int:pk>/', ExamUpdateView.as_view(), name="exam_update"),
+    path('exam_erase/<int:pk>/', ExamDeleteView.as_view(), name="exam_erase"),
     path('profile/<int:pk>/', ProfileUpdateUser.as_view(), name="profile"),
     path('login/', LoginView.as_view(template_name='Aeidl/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='Aeidl/login.html'), name='logout')

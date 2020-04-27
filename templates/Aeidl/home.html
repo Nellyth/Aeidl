@@ -56,6 +56,24 @@
             </a>
         </li>
     {% endif %}
+
+    {% if perms.AppAeidl.view_study %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'study_list' %}">
+                <i class="fas fa-fw fa-user-md"></i>
+                <span>Study</span>
+            </a>
+        </li>
+    {% endif %}
+
+    {% if perms.AppAeidl.view_exam %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'exam_list' %}">
+                <i class="fas fa-fw fa-user-md"></i>
+                <span>Exam</span>
+            </a>
+        </li>
+    {% endif %}
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

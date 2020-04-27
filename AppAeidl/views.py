@@ -2,8 +2,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 
-from AppAeidl.forms import MedicForm, PacienteForm, PersonForm, CompanyForm, EntityForm, SpecialtyForm, RoleForm
-from AppAeidl.models import Medic, Patient, Person, Company, Entity, Specialty, Role
+from AppAeidl.forms import MedicForm, PacienteForm, PersonForm, CompanyForm, EntityForm, SpecialtyForm, RoleForm, \
+    StudyForm, ExamForm
+from AppAeidl.models import Medic, Patient, Person, Company, Entity, Specialty, Role, Study, Exam
 
 
 class Home(LoginRequiredMixin, TemplateView):
@@ -200,3 +201,63 @@ class RoleDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'Aeidl/delete.html'
     success_url = reverse_lazy('role_list')
     permission_required = 'AppAeidl.delete_role'
+
+
+class StudyListView(PermissionRequiredMixin, ListView):
+    model = Study
+    queryset = Study.objects.all()
+    template_name = 'Aeidl/study.html'
+    permission_required = 'AppAeidl.view_study'
+
+
+class StudyCreateView(PermissionRequiredMixin, CreateView):
+    model = Study
+    form_class = StudyForm
+    template_name = 'Aeidl/study_create.html'
+    success_url = reverse_lazy('exam_list')
+    permission_required = 'AppAeidl.add_study'
+
+
+class StudyUpdateView(PermissionRequiredMixin, UpdateView):
+    model = Study
+    form_class = StudyForm
+    template_name = 'Aeidl/study_create.html'
+    success_url = reverse_lazy('exam_list')
+    permission_required = 'AppAeidl.change_study'
+
+
+class StudyDeleteView(PermissionRequiredMixin, DeleteView):
+    model = Study
+    template_name = 'Aeidl/delete.html'
+    success_url = reverse_lazy('exam_list')
+    permission_required = 'AppAeidl.delete_study'
+
+
+class ExamListView(PermissionRequiredMixin, ListView):
+    model = Exam
+    queryset = Exam.objects.all()
+    template_name = 'Aeidl/exam.html'
+    permission_required = 'AppAeidl.view_exam'
+
+
+class ExamCreateView(PermissionRequiredMixin, CreateView):
+    model = Exam
+    form_class = ExamForm
+    template_name = 'Aeidl/exam_create.html'
+    success_url = reverse_lazy('exam_list')
+    permission_required = 'AppAeidl.add_exam'
+
+
+class ExamUpdateView(PermissionRequiredMixin, UpdateView):
+    model = Exam
+    form_class = ExamForm
+    template_name = 'Aeidl/exam_create.html'
+    success_url = reverse_lazy('exam_list')
+    permission_required = 'AppAeidl.change_exam'
+
+
+class ExamDeleteView(PermissionRequiredMixin, DeleteView):
+    model = Exam
+    template_name = 'Aeidl/delete.html'
+    success_url = reverse_lazy('exam_list')
+    permission_required = 'AppAeidl.delete_exam'

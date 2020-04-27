@@ -1,8 +1,8 @@
 from django.forms import ModelForm
 from django import forms
 
-from AppAeidl.choices import GenderChoices
-from AppAeidl.models import Medic, Patient, Person, Company, Entity, Specialty, Role
+from AppAeidl.choices import GenderChoices, StatusChoices
+from AppAeidl.models import Medic, Patient, Person, Company, Entity, Specialty, Role, Study, Exam
 from datetime import date
 
 
@@ -174,4 +174,55 @@ class RoleForm(ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'company': forms.Select(attrs={'class': 'form-control'})
+        }
+
+
+class StudyForm(ModelForm):
+    class Meta:
+        model = Study
+        fields = [
+            'name',
+            'company'
+        ]
+
+        labels = {
+            'name': 'Name',
+            'company': 'Company'
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'company': forms.Select(attrs={'class': 'form-control'})
+        }
+
+
+class ExamForm(ModelForm):
+    class Meta:
+        model = Exam
+
+        fields = [
+            'patient',
+            'medic',
+            'study',
+            'status',
+            'file',
+            'result'
+        ]
+
+        labels = {
+            'patient': 'Patient',
+            'medic': 'Medic',
+            'study': 'Study',
+            'status': 'Status',
+            'file': 'File',
+            'result': 'Result'
+        }
+
+        widgets = {
+            'patient': forms.Select(attrs={'class': 'form-control'}),
+            'medic': forms.Select(attrs={'class': 'form-control'}),
+            'study': forms.Select(attrs={'class': 'form-control'}),
+            'status': forms.Select(choices=StatusChoices.CHOICES, attrs={'class': 'form-control'}),
+            'file': forms.FileInput(attrs={'class': 'form-control'}),
+            'result': forms.Textarea(attrs={'class': 'form-control'})
         }
