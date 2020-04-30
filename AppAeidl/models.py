@@ -91,12 +91,12 @@ class Study(models.Model):
 
 class Exam(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
-    medic = models.ForeignKey('Medic', null=True, on_delete=models.SET_NULL)
+    medic = models.ForeignKey('Medic', null=True, blank=True, on_delete=models.SET_NULL)
     study = models.ForeignKey('Study', null=True, on_delete=models.SET_NULL)
     date = models.DateField(auto_now_add=True, null=True)
     status = models.CharField(choices=StatusChoices.CHOICES, max_length=40)
     file = models.FileField()
-    result = models.TextField(max_length=500)
+    result = models.TextField(max_length=500, null=True, blank=True)
 
     def __str__(self):
         return f'Patient: {self.patient.person.identification}, Medic: {self.medic.person.identification}, ' \

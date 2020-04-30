@@ -7,7 +7,7 @@ from AppAeidl.views import Home, MedicListView, MedicCreateView, MedicUpdateView
     CompanyCreateView, CompanyListView, EntityListView, EntityCreateView, EntityUpdateView, EntityDeleteView, \
     SpecialtyListView, SpecialtyCreateView, SpecialtyUpdateView, SpecialtyDeleteView, RoleListView, RoleCreateView, \
     RoleUpdateView, RoleDeleteView, StudyDeleteView, StudyUpdateView, StudyCreateView, StudyListView, ExamListView, \
-    ExamCreateView, ExamUpdateView, ExamDeleteView
+    ExamCreateView, ExamUpdateView, ExamDeleteView, download
 
 urlpatterns = [
     path('', Home.as_view(), name="home"),
@@ -44,6 +44,7 @@ urlpatterns = [
     path('exam_update/<int:pk>/', ExamUpdateView.as_view(), name="exam_update"),
     path('exam_erase/<int:pk>/', ExamDeleteView.as_view(), name="exam_erase"),
     path('profile/<int:pk>/', ProfileUpdateUser.as_view(), name="profile"),
+    path('download_file/<path:path>/', download, name="download_file"),
     path('login/', LoginView.as_view(template_name='Aeidl/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='Aeidl/login.html'), name='logout')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

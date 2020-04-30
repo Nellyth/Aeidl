@@ -25,7 +25,7 @@
                         <td>{{ object.study }}</td>
                         <td>{{ object.date }}</td>
                         <td>{{ object.status }}</td>
-                        <td>{{ object.file }}</td>
+                        <td><a href="{% url "download_file" object.file.url %}">{{ object.file }}</a></td>
                         <td>{{ object.result }}</td>
                         <td style="text-align: center">
                             <a {% if perms.AppAeidl.change_exam %}

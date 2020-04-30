@@ -71,7 +71,7 @@
                         <div class="col-md-12 col-md-offset-2">
                             <div class="float-left">
                                 {% with pk=user.pk|medic_query %}
-                                    {% if pk %}
+                                    {% if pk and perms.AppAeidl.change_medic %}
                                         <a class="btn btn-warning" href="{% url 'medic_update' pk %}">
                                             Update Staff Medic</a>
                                     {% else %}
@@ -81,7 +81,7 @@
                             </div>
                             <div class="float-right">
                                 {% with pk=user.pk|patient_query %}
-                                    {% if pk %}
+                                    {% if pk and perms.AppAeidl.change_patient %}
                                         <a class="btn btn-warning" href="{% url 'paciente_update' pk %}">
                                             Update Patient</a>
                                     {% else %}
