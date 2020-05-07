@@ -21,10 +21,10 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- My Css -->
-    <link href="{% static 'base/css/mycss.css' %}" rel="stylesheet">
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"#}
+{#          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
+{#    <!-- My Css -->#}
+{#    <link href="{% static 'base/css/mycss.css' %}" rel="stylesheet">#}
 
     <!-- Custom styles for this template-->
     <link href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
@@ -249,7 +249,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; ThunderBlack Gamer</span>
+                        <span>Copyright &copy; AEIDL</span>
                     </div>
                 </div>
             </footer>
@@ -287,21 +287,27 @@
     </div>
 </div>
 
-{% block scripts %}
-    <!-- Bootstrap core JavaScript-->
-    <script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{% static 'base/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{% static 'base/js/sb-admin-2.min.js' %}"></script>
+<!-- Core plugin JavaScript-->
+<script src="{% static 'base/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
-{% endblock %}
+<!-- Custom scripts for all pages-->
+<script src="{% static 'base/js/sb-admin-2.min.js' %}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+<script>
+    /// Call the datables jQuery plugin
+    $(document).ready(function () {
+        $('.table').DataTable();
+    });
+</script>
 
 {% block js_page %}
 
