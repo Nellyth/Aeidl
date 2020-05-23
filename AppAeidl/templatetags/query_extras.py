@@ -19,3 +19,8 @@ def patient_query(value):
         return Patient.objects.get(person=value).pk
     except Patient.DoesNotExist:
         return None
+
+
+@register.filter
+def to_class_name(value):
+    return value._meta.model_name

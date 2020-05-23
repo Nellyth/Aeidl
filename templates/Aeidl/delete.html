@@ -1,5 +1,6 @@
 {% extends 'Aeidl/home.html' %}
 {% load static %}
+{% load query_extras %}
 {% block content %}
     <div class="container text-center" style="width: 50%; border:1px solid black; margin-top: 2%; margin-bottom: 2%;
         background:lightgray; padding-top: 1%; padding-bottom: 1%">
@@ -7,7 +8,42 @@
             {% csrf_token %}
             {{ form.errors }}
             <p style="color: black">Are you sure you want to delete "{{ object }}"?</p>
-            <input type="submit" value="Confirm">
+            <button class="btn btn-danger font-weight-bold"
+                    type="submit"><i class="fa fa-save mr-2"></i>Confirm
+            </button>
+            {% if object|to_class_name == 'company' %}
+                <a href="{% url 'company_list' %}" class="btn btn-primary">
+                    <span class="fa fa-undo">&nbsp;Cancel</span>
+                </a>
+            {% elif object|to_class_name == 'medic' %}
+                <a href="{% url 'medic_list' %}" class="btn btn-primary">
+                    <span class="fa fa-undo">&nbsp;Cancel</span>
+                </a>
+            {% elif object|to_class_name == 'patient' %}
+                <a href="{% url 'paciente_list' %}" class="btn btn-primary">
+                    <span class="fa fa-undo">&nbsp;Cancel</span>
+                </a>
+            {% elif object|to_class_name == 'entity' %}
+                <a href="{% url 'entity_list' %}" class="btn btn-primary">
+                    <span class="fa fa-undo">&nbsp;Cancel</span>
+                </a>
+            {% elif object|to_class_name == 'specialty' %}
+                <a href="{% url 'specialty_list' %}" class="btn btn-primary">
+                    <span class="fa fa-undo">&nbsp;Cancel</span>
+                </a>
+            {% elif object|to_class_name == 'role' %}
+                <a href="{% url 'role_list' %}" class="btn btn-primary">
+                    <span class="fa fa-undo">&nbsp;Cancel</span>
+                </a>
+            {% elif object|to_class_name == 'study' %}
+                <a href="{% url 'study_list' %}" class="btn btn-primary">
+                    <span class="fa fa-undo">&nbsp;Cancel</span>
+                </a>
+            {% elif object|to_class_name == 'exam' %}
+                <a href="{% url 'exam_list' %}" class="btn btn-primary">
+                    <span class="fa fa-undo">&nbsp;Cancel</span>
+                </a>
+            {% endif %}
         </form>
     </div>
 {% endblock %}
